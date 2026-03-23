@@ -7,8 +7,8 @@ const STATS = [
 ];
 
 const BULLETS_SOFI = [
-  "Led 2–3 enterprise AI deployments end-to-end — 100% client approval rate",
-  "Reduced revision loops 30–40% via workflow documentation and automation",
+  "Led 2-3 enterprise AI deployments end-to-end — 100% client approval rate",
+  "Reduced revision loops 30-40% via workflow documentation and automation",
   "Built Google Apps Script cutting manual asset update time by 70%",
   "Commended by co-founder for independently leading client meetings",
 ];
@@ -21,8 +21,8 @@ const BULLETS_NAVITAIRE = [
 ];
 
 const STACK = [
-  "Python", "SQL", "R", "Power BI", "Tableau", "Databricks",
-  "JIRA", "Azure DevOps", "Agile", "Scrum", "Process Mapping",
+  "Python", "SQL", "Power BI", "Tableau", "Databricks",
+  "Azure DevOps", "Agile", "Scrum", "Process Mapping",
 ];
 
 function useCountUp(target, triggered) {
@@ -88,36 +88,42 @@ export default function Experience() {
             </h2>
 
             {/* SOFI */}
-            <div className="exp-entry">
-              <div className="exp-entry-header">
+          <div className="exp-entry">
+            <div className="exp-entry-header">
+              <div>
                 <h3 className="exp-role">Business Analyst · SOFI AI Tech Solution Inc.</h3>
-                <span className="exp-date">May 2025 – Aug 2025</span>
+                <div className="exp-location">Quezon City, Philippines</div>
               </div>
-              <ul className="exp-bullets">
-                {BULLETS_SOFI.map((item, i) => (
-                  <li key={i} className="exp-bullet">
-                    <span className="exp-bullet-dash">–</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <span className="exp-date">May 2025 – Aug 2025</span>
             </div>
+            <ul className="exp-bullets">
+              {BULLETS_SOFI.map((item, i) => (
+                <li key={i} className="exp-bullet">
+                  <span className="exp-bullet-dash">–</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Navitaire */}
-            <div className="exp-entry">
-              <div className="exp-entry-header">
+          {/* Navitaire */}
+          <div className="exp-entry">
+            <div className="exp-entry-header">
+              <div>
                 <h3 className="exp-role">Junior Technical Writer · Navitaire, an Amadeus Company</h3>
-                <span className="exp-date">Jun 2024 – Mar 2025</span>
+                <div className="exp-location">Taguig City, Philippines</div>
               </div>
-              <ul className="exp-bullets">
-                {BULLETS_NAVITAIRE.map((item, i) => (
-                  <li key={i} className="exp-bullet">
-                    <span className="exp-bullet-dash">–</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <span className="exp-date">Jun 2024 – Mar 2025</span>
             </div>
+            <ul className="exp-bullets">
+              {BULLETS_NAVITAIRE.map((item, i) => (
+                <li key={i} className="exp-bullet">
+                  <span className="exp-bullet-dash">–</span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
             {/* Stack */}
             <div className="exp-stack">

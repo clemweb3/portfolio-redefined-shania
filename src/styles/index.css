@@ -619,12 +619,15 @@ button { background: none; border: none; cursor: pointer; }
   padding: 32px 0;
 }
 
+/* ─── EXPERIENCE UPDATES ──────────────────────────────────── */
+
 .exp-entry-header {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
+
 @media (min-width: 640px) {
   .exp-entry-header {
     flex-direction: row;
@@ -634,10 +637,24 @@ button { background: none; border: none; cursor: pointer; }
   }
 }
 
+.exp-role-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* Tight spacing between title and location */
+}
+
 .exp-role {
   font-size: 15px;
-  font-weight: 600; /* Unified title thickness */
+  font-weight: 600; 
   color: var(--white);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+.exp-location {
+  font-size: 15px;     
+  font-weight: 600;    
+  color: var(--text-2);  
   letter-spacing: 0.04em;
   line-height: 1.4;
 }
@@ -649,7 +666,7 @@ button { background: none; border: none; cursor: pointer; }
   text-transform: uppercase;
   white-space: nowrap;
   flex-shrink: 0;
-  padding-top: 2px;
+  padding-top: 4px; /* Aligns with the first line of text */
 }
 
 .exp-bullets { display: flex; flex-direction: column; gap: 8px; }
