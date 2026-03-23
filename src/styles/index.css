@@ -60,23 +60,26 @@ button { background: none; border: none; cursor: pointer; }
 .accent { color: var(--gold); }
 
 .body-text {
-  color: var(--text-4);
+  color: var(--text-2); /* Adjusted from text-4 for better presence */
   font-size: 16px;
   line-height: 1.85;
 }
 
 .tag {
   display: inline-block;
-  font-size: 12px;
-  color: var(--text-4);
-  border: 1px solid var(--border);
-  padding: 4px 10px;
-  letter-spacing: 0.04em;
+  font-size: 11px;
+  color: var(--text-1); /* Fixed: Coursework is now visible */
+  font-weight: 500;      /* Fixed: Added thickness */
+  border: 1px solid var(--border-2);
+  padding: 4px 12px;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.03);
+  transition: var(--transition);
 }
 
 .tag--accent {
   color: var(--gold);
-  border-color: var(--border-2);
+  border-color: rgba(139, 115, 85, 0.3);
 }
 
 /* ─── SHARED SECTION STRUCTURE ────────────────────────────── */
@@ -135,10 +138,11 @@ button { background: none; border: none; cursor: pointer; }
   flex-shrink: 0;
 }
 .section-tag-text {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--gold);
-  letter-spacing: 0.3em;
+  letter-spacing: 0.35em;
   text-transform: uppercase;
+  font-weight: 700; /* Consistency Fix: Matched the "001" thickness */
 }
 
 .section-heading {
@@ -186,7 +190,7 @@ button { background: none; border: none; cursor: pointer; }
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 500;
+  font-weight: 600; /* Unified thickness */
 }
 .nav-logo-diamond { color: var(--gold); font-size: 18px; }
 
@@ -202,7 +206,7 @@ button { background: none; border: none; cursor: pointer; }
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-3);
-  font-weight: 500;
+  font-weight: 600; /* Unified thickness */
   transition: color var(--transition);
 }
 .nav-link:hover { color: var(--gold); }
@@ -221,13 +225,12 @@ button { background: none; border: none; cursor: pointer; }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 8px 20px;
-  font-weight: 500;
+  font-weight: 600;
   transition: border-color var(--transition);
 }
 .nav-resume:hover { border-color: var(--gold); }
 @media (min-width: 768px) { .nav-resume { display: block; } }
 
-/* Hamburger */
 .nav-hamburger {
   display: flex;
   flex-direction: column;
@@ -349,7 +352,7 @@ button { background: none; border: none; cursor: pointer; }
   color: var(--gold);
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700; /* Consistent with "001" logic */
 }
 
 .hero-grid-layout {
@@ -401,11 +404,11 @@ button { background: none; border: none; cursor: pointer; }
 .hero-cycle {
   color: var(--gold);
   font-style: normal;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .hero-body {
-  color: var(--text-4);
+  color: var(--text-2);
   font-size: clamp(13px, 1.2vw, 15px);
   line-height: 1.9;
   max-width: 520px;
@@ -493,15 +496,16 @@ button { background: none; border: none; cursor: pointer; }
 
 .hero-sidebar-label {
   font-size: 10px;
-  color: var(--text-5);
+  color: var(--text-3); /* Brighter for consistency */
   letter-spacing: 0.28em;
   text-transform: uppercase;
   margin-bottom: 8px;
-  font-weight: 600;
+  font-weight: 700;
 }
 .hero-sidebar-value {
   font-size: 14px;
-  color: var(--text-2);
+  font-weight: 500;
+  color: var(--text-1);
   line-height: 1.6;
 }
 
@@ -552,14 +556,14 @@ button { background: none; border: none; cursor: pointer; }
 
 .hero-meta-label {
   font-size: 9px;
-  color: #3A3A3A;
+  color: var(--text-3);
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
 }
 .hero-meta-value {
   font-size: 12px;
-  color: var(--text-2);
+  color: var(--text-1);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -614,7 +618,6 @@ button { background: none; border: none; cursor: pointer; }
   border-top: 1px solid var(--border);
   padding: 32px 0;
 }
-.exp-entry:last-of-type { border-bottom: none; }
 
 .exp-entry-header {
   display: flex;
@@ -632,8 +635,8 @@ button { background: none; border: none; cursor: pointer; }
 }
 
 .exp-role {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600; /* Unified title thickness */
   color: var(--white);
   letter-spacing: 0.04em;
   line-height: 1.4;
@@ -653,8 +656,8 @@ button { background: none; border: none; cursor: pointer; }
 .exp-bullet {
   display: flex;
   gap: 12px;
-  font-size: 13px;
-  color: var(--text-4);
+  font-size: 13.5px;
+  color: var(--text-2);
   line-height: 1.6;
 }
 .exp-bullet-dash {
@@ -665,8 +668,9 @@ button { background: none; border: none; cursor: pointer; }
 
 .exp-stack { border-top: 1px solid var(--border); padding-top: 28px; }
 .exp-stack-label {
-  font-size: 9px;
-  color: var(--text-4);
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin-bottom: 14px;
@@ -678,19 +682,18 @@ button { background: none; border: none; cursor: pointer; }
   flex-direction: row;
   flex-wrap: wrap;
   gap: 32px;
-  padding-top: 0;
 }
 @media (min-width: 768px) {
   .exp-stats {
     flex-direction: column;
-    flex-wrap: nowrap;
     padding-top: 80px;
   }
 }
 
 .exp-stats-label {
-  font-size: 9px;
-  color: var(--text-4);
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 700;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   width: 100%;
@@ -708,7 +711,7 @@ button { background: none; border: none; cursor: pointer; }
 .exp-stat-label {
   display: block;
   font-size: 10px;
-  color: var(--text-4);
+  color: var(--text-2);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -759,7 +762,8 @@ button { background: none; border: none; cursor: pointer; }
 
 .proj-id {
   font-size: 11px;
-  color: #333;
+  color: var(--text-3); /* Brighter for consistency */
+  font-weight: 700;      /* Fixed: Heavy "001" style */
   letter-spacing: 0.15em;
   padding-top: 2px;
 }
@@ -773,8 +777,8 @@ button { background: none; border: none; cursor: pointer; }
 }
 
 .proj-title {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600; /* Unified thickness */
   color: var(--white);
   letter-spacing: 0.04em;
   transition: color var(--transition);
@@ -783,15 +787,16 @@ button { background: none; border: none; cursor: pointer; }
 
 .proj-status {
   font-size: 9px;
-  color: var(--text-4);
+  color: var(--text-2);
   border: 1px solid var(--border);
   padding: 3px 8px;
   letter-spacing: 0.08em;
+  font-weight: 600;
 }
 
 .proj-desc {
-  font-size: 13px;
-  color: var(--text-4);
+  font-size: 13.5px;
+  color: var(--text-2);
   line-height: 1.7;
   max-width: 520px;
   margin-bottom: 14px;
@@ -816,7 +821,8 @@ button { background: none; border: none; cursor: pointer; }
 
 .proj-link {
   font-size: 10px;
-  color: var(--text-2);
+  color: var(--text-1);
+  font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: color var(--transition);
@@ -834,15 +840,15 @@ button { background: none; border: none; cursor: pointer; }
 @media (min-width: 768px) {
   .about-layout {
     grid-template-columns: 1fr 260px;
-    gap: 60px;
+    gap: 80px;
   }
 }
 
 .about-paras {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  max-width: 480px;
+  gap: 20px;
+  max-width: 520px;
 }
 
 .about-sidebar {
@@ -853,39 +859,48 @@ button { background: none; border: none; cursor: pointer; }
 
 .about-card {
   border-top: 1px solid var(--border);
-  padding: 24px 0;
+  padding: 32px 0;
 }
 
 .about-card-label {
-  font-size: 12px;
-  color: var(--text-4);
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  color: var(--text-3);
+  font-weight: 700; /* Fixed thickness for industrial look */
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 .about-card-title {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--white);
-  margin-bottom: 4px;
+  font-weight: 600; /* Unified title thickness */
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
 }
 .about-card-sub {
-  font-size: 12px;
-  color: var(--text-2);
+  font-size: 13.5px;
+  color: var(--text-1);
+  font-weight: 500;
 }
 .about-card-accent {
   font-size: 10px;
   color: var(--gold);
+  font-weight: 700;
   letter-spacing: 0.08em;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 
 .about-credential {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.about-credential-star { color: var(--gold); font-size: 12px; }
+.about-credential-star { 
+  color: var(--gold); 
+  font-size: 14px; 
+  font-weight: bold; 
+}
 
 /* ─── ABOUT ANIMATIONS (SIGNAL LOSS) ─────────────────────── */
 .accent-cycle {
@@ -898,7 +913,6 @@ button { background: none; border: none; cursor: pointer; }
   display: inline-block;
   color: var(--gold);
   position: relative;
-  /* Robotic, jagged snap flickering */
   animation: glitch-flicker 0.2s steps(1) infinite;
   filter: contrast(150%) brightness(1.2);
 }
@@ -950,6 +964,7 @@ button { background: none; border: none; cursor: pointer; }
   font-size: 10px;
   letter-spacing: 0.2em;
   text-transform: uppercase;
+  font-weight: 700;
   transition: background var(--transition);
 }
 .btn-primary:hover { background: var(--gold-h); }
@@ -957,8 +972,6 @@ button { background: none; border: none; cursor: pointer; }
 .contact-links {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  padding-top: 0;
 }
 @media (min-width: 768px) { .contact-links { padding-top: 16px; } }
 
@@ -968,8 +981,9 @@ button { background: none; border: none; cursor: pointer; }
 }
 
 .contact-link {
-  font-size: 13px;
-  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-1);
   transition: color var(--transition);
   word-break: break-all;
 }
@@ -995,6 +1009,7 @@ button { background: none; border: none; cursor: pointer; }
   font-size: 10px;
   color: var(--text-6);
   letter-spacing: 0.08em;
+  font-weight: 500;
 }
 .contact-footer-tagline {
   font-size: 10px;

@@ -76,7 +76,7 @@ export default function Experience() {
         {/* Label */}
         <div className="section-tag">
           <span className="section-tag-line" />
-          <span className="section-tag-text">002 / Experience</span>
+          <span className="section-tag-text">003 / Experience</span>
         </div>
 
         <div className="exp-layout">

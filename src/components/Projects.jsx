@@ -46,7 +46,7 @@ export default function Projects() {
         {/* Label */}
         <div className="section-tag">
           <span className="section-tag-line" />
-          <span className="section-tag-text">003 / Selected Work</span>
+          <span className="section-tag-text">002 / Selected Work</span>
         </div>
 
         <div className="proj-header">
