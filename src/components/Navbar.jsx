@@ -30,7 +30,7 @@ export default function Navbar() {
       <div className="nav-inner">
         {/* Logo */}
         <a href="#home" className="nav-logo">
-          NIA <span className="nav-logo-diamond">◆</span>
+          ENIXIA.IO <span className="nav-logo-diamond">◆</span>
         </a>
 
         {/* Desktop links */}
