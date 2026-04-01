@@ -43,10 +43,6 @@ export default function Navbar() {
         </div>
 
         <div className="nav-actions">
-          <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="nav-resume">
-            Resume
-          </a>
-
           {/* Hamburger */}
           <button
             className={`nav-hamburger${menuOpen ? " nav-hamburger--open" : ""}`}
@@ -73,12 +69,9 @@ export default function Navbar() {
           </a>
         ))}
         <a
-          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="nav-drawer-resume"
         >
-          Resume ↗
         </a>
       </div>
     </nav>
