@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
-  { label: "Work", href: "#featured-projects" },
+  { label: "Home", href: "#home" },
   { label: "Experience", href: "#experience" },
+  { label: "Projects", href: "#featured-projects" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -17,7 +18,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  // Close menu on outside click
   useEffect(() => {
     if (!menuOpen) return;
     const close = () => setMenuOpen(false);
@@ -30,7 +30,22 @@ export default function Navbar() {
       <div className="nav-inner">
         {/* Logo */}
         <a href="#home" className="nav-logo">
-          ENIXIA.IO <span className="nav-logo-diamond">◆</span>
+          <span className="nav-logo-text">enixia.io</span>
+          {/*
+            To use your actual favicon/logo image:
+            <img src="/src/assets/logo.png" alt="enixia" className="nav-logo-img" />
+
+            Advanced image settings are available via CSS:
+            .nav-logo-img {
+              width: 28px;
+              height: 28px;
+              opacity: 0.9;          // transparency
+              filter: invert(1) sepia(1) saturate(2) hue-rotate(0deg) brightness(1.1);
+                                     // color shifting
+              mix-blend-mode: screen;// blend mode for dark backgrounds
+            }
+          */}
+          <span className="nav-logo-diamond">◆</span>
         </a>
 
         {/* Desktop links */}
@@ -43,7 +58,6 @@ export default function Navbar() {
         </div>
 
         <div className="nav-actions">
-          {/* Hamburger */}
           <button
             className={`nav-hamburger${menuOpen ? " nav-hamburger--open" : ""}`}
             onClick={(e) => { e.stopPropagation(); setMenuOpen((v) => !v); }}
@@ -68,11 +82,6 @@ export default function Navbar() {
             {item.label}
           </a>
         ))}
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
       </div>
     </nav>
   );

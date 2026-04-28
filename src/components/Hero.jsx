@@ -69,38 +69,36 @@ export default function Hero() {
   }, []);
 
   return (
-    <section
-      id="home"
-      className="hero-section"
-    >
-      {/* Background grid */}
+    <section id="home" className="hero-section">
+      {/* ── BACKGROUND GRID ── */}
       <div className="hero-bg" aria-hidden="true">
         <div className="hero-grid" />
+        <div className="hero-vignette" />
       </div>
 
-      {/* Main content */}
-      <div className="hero-wrap">
+      {/* ── VERTICAL RULES ── */}
+      <div className="hero-rule-left" aria-hidden="true" />
+      <div className="hero-rule-right" aria-hidden="true" />
 
-        {/* Left vertical rule */}
-        <div className="hero-rule-left" aria-hidden="true" />
-        <div className="hero-rule-right" aria-hidden="true" />
+      {/* ── SPLIT LAYOUT ── */}
+      <div className="hero-split">
 
-        {/* Intro tag */}
-        <div className="hero-tag">
-          <span className="hero-tag-line" />
-          <span className="hero-tag-text">001 / Introduction</span>
-        </div>
+        {/* LEFT: TEXT PANEL */}
+        <div className="hero-left">
+          <div className="hero-wrap-inner">
 
-        {/* Copy + sidebar grid */}
-        <div className="hero-grid-layout">
+            {/* Intro tag */}
+            <div className="hero-tag">
+              <span className="hero-tag-line" />
+              <span className="hero-tag-text">001 / Introduction</span>
+            </div>
 
-          {/* Main copy */}
-          <div className="hero-copy">
+            {/* Main headlines */}
             <div className="hero-headlines">
               <h1 className="hero-h1">
-                Technical enough to build it.
+                Technical enough<br />to build it.
               </h1>
-              <h1 className="hero-h1">
+              <h1 className="hero-h1 hero-h1--accent">
                 Clear enough to{" "}
                 <span
                   ref={leadRef}
@@ -109,6 +107,7 @@ export default function Hero() {
               </h1>
             </div>
 
+            {/* Cycling subhead */}
             <p className="hero-subhead">
               I turn complexity into{" "}
               <span ref={cycleRef} className="hero-cycle">
@@ -121,7 +120,7 @@ export default function Hero() {
               dashboards, and the people using them.
             </p>
 
-            {/* CTA buttons */}
+            {/* CTA */}
             <div className="hero-btns">
               <a href="#featured-projects" className="hero-btn hero-btn--primary">
                 <span className="hero-btn-fill" aria-hidden="true" />
@@ -132,55 +131,90 @@ export default function Hero() {
                 <span className="hero-btn-label hero-btn-label--accent">Let's Talk</span>
               </a>
             </div>
-          </div>
 
-          {/* Right sidebar — desktop only */}
-          <aside className="hero-sidebar">
-            {[
-              { label: "Discipline", lines: ["BI · Data Science", "Business Analysis"] },
-              { label: "Currently", lines: ["BSDS · Mapua University", "Graduating 2026"] },
-              { label: "Based In", lines: ["Manila, Philippines"] },
-            ].map(({ label, lines }) => (
-              <div key={label} className="hero-sidebar-item">
-                <p className="hero-sidebar-label">{label}</p>
-                {lines.map((v, i) => (
-                  <p key={i} className="hero-sidebar-value">{v}</p>
-                ))}
-              </div>
-            ))}
-            <div className="hero-sidebar-item">
-              <p className="hero-sidebar-label">Status</p>
-              <div className="hero-status">
-                <span className="hero-status-dot" />
-                <p className="hero-sidebar-value">Open to work</p>
-              </div>
+            {/* Meta strip (visible mobile + desktop left panel) */}
+            <div className="hero-meta-strip">
+              <div className="hero-meta-divider" />
+              {[
+                { label: "Discipline", value: "BI · Data Science" },
+                { label: "Currently", value: "BSDS · Mapua University" },
+                { label: "Based In", value: "Manila, Philippines" },
+                { label: "Status", value: "Open to work", dot: true },
+              ].map(({ label, value, dot }, i, arr) => (
+                <div
+                  key={label}
+                  className={`hero-meta-row${i < arr.length - 1 ? " hero-meta-row--border" : ""}`}
+                >
+                  <span className="hero-meta-label">{label}</span>
+                  <span className="hero-meta-value">
+                    {dot && <span className="hero-status-dot" />}
+                    {value}
+                  </span>
+                </div>
+              ))}
             </div>
-          </aside>
+          </div>
         </div>
 
-        {/* Mobile meta strip */}
-        <div className="hero-mobile-meta">
-          <div className="hero-mobile-divider" />
-          {[
-            { label: "Discipline", value: "BI · Data Science" },
-            { label: "Location", value: "Manila, Philippines" },
-            { label: "Status", value: "Open to work", dot: true },
-          ].map(({ label, value, dot }, i, arr) => (
-            <div
-              key={label}
-              className={`hero-meta-row${i < arr.length - 1 ? " hero-meta-row--border" : ""}`}
-            >
-              <span className="hero-meta-label">{label}</span>
-              <span className="hero-meta-value">
-                {dot && <span className="hero-status-dot hero-status-dot--sm" />}
-                {value}
-              </span>
+        {/* RIGHT: IMAGE PANEL */}
+        <div className="hero-right" aria-hidden="true">
+          {/*
+            ── HERO IMAGE SETUP ──────────────────────────────────────────
+            Replace the placeholder below with your actual image.
+
+            OPTION 1 — Local asset (recommended):
+              1. Add your photo to /src/assets/hero-photo.jpg (or .webp)
+              2. Import it: import heroBg from "../assets/hero-photo.jpg";
+              3. Set: style={{ backgroundImage: `url(${heroBg})` }}
+
+            OPTION 2 — Public folder:
+              Place photo at /public/hero-photo.jpg
+              Set: style={{ backgroundImage: 'url(/hero-photo.jpg)' }}
+
+            ADVANCED IMAGE SETTINGS (adjust in CSS class .hero-photo):
+              background-size: cover        → fill the panel (default)
+              background-position: center top → align to top of photo
+              opacity: 0.85                 → overall transparency (0–1)
+              filter: grayscale(0.2) contrast(1.05) brightness(0.95)
+                → subtle tone grading; increase grayscale(1) for full B&W
+              mix-blend-mode: normal        → try 'luminosity' for tinted BW
+            ────────────────────────────────────────────────────────────
+          */}
+          <div
+            className="hero-photo"
+            style={{
+              backgroundImage: "none",        /* ← REPLACE with url(heroBg) */
+            }}
+          >
+            {/* Placeholder overlay — remove once you add the real image */}
+            <div className="hero-photo-placeholder">
+              <div className="hero-photo-placeholder-inner">
+                <span className="hero-photo-placeholder-label">
+                  HERO<br />PHOTO
+                </span>
+                <span className="hero-photo-placeholder-hint">
+                  Replace hero-photo.jpg in /src/assets/
+                </span>
+              </div>
             </div>
-          ))}
+
+            {/* Gradient overlay — keeps text readable; tune opacity in CSS */}
+            <div className="hero-photo-overlay" />
+
+            {/* Corner accents */}
+            <div className="hero-photo-corner hero-photo-corner--tl" />
+            <div className="hero-photo-corner hero-photo-corner--br" />
+          </div>
+
+          {/* Floating name card */}
+          <div className="hero-namecard">
+            <span className="hero-namecard-name">Shania Keith Dela Vega</span>
+            <span className="hero-namecard-role">Data Scientist · BI Analyst · BA</span>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* ── SCROLL INDICATOR ── */}
       <div className="hero-scroll" aria-hidden="true">
         <span className="hero-scroll-text">Scroll</span>
         <div className="hero-scroll-line" />
