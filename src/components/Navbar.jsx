@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import faviconLogo from "../assets/assets/logo_FAVICON.png";
+
 
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
@@ -20,7 +22,11 @@ export default function Navbar() {
 
   useEffect(() => {
     if (!menuOpen) return;
-    const close = () => setMenuOpen(false);
+    const close = (e) => {
+      if (!e.target.closest(".nav-drawer") && !e.target.closest(".nav-hamburger")) {
+        setMenuOpen(false);
+      }
+    };
     document.addEventListener("click", close);
     return () => document.removeEventListener("click", close);
   }, [menuOpen]);
@@ -28,24 +34,14 @@ export default function Navbar() {
   return (
     <nav className={`nav${scrolled ? " nav--scrolled" : ""}`}>
       <div className="nav-inner">
-        {/* Logo */}
-        <a href="#home" className="nav-logo">
-          <span className="nav-logo-text">enixia.io</span>
-          {/*
-            To use your actual favicon/logo image:
-            <img src="/src/assets/logo.png" alt="enixia" className="nav-logo-img" />
-
-            Advanced image settings are available via CSS:
-            .nav-logo-img {
-              width: 28px;
-              height: 28px;
-              opacity: 0.9;          // transparency
-              filter: invert(1) sepia(1) saturate(2) hue-rotate(0deg) brightness(1.1);
-                                     // color shifting
-              mix-blend-mode: screen;// blend mode for dark backgrounds
-            }
-          */}
-          <span className="nav-logo-diamond">◆</span>
+        {/* EN Logo — uses the EN favicon/logo mark */}
+        <a href="#home" className="nav-logo" aria-label="Enixia Home">
+          <img
+            src={faviconLogo}
+            alt=""
+            aria-hidden="true"
+            className="nav-logo-img"
+          />
         </a>
 
         {/* Desktop links */}
@@ -57,21 +53,21 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="nav-actions">
-          <button
-            className={`nav-hamburger${menuOpen ? " nav-hamburger--open" : ""}`}
-            onClick={(e) => { e.stopPropagation(); setMenuOpen((v) => !v); }}
-            aria-label="Toggle menu"
-          >
-            <span />
-            <span />
-            <span />
-          </button>
-        </div>
+        {/* Hamburger */}
+        <button
+          className={`nav-hamburger${menuOpen ? " nav-hamburger--open" : ""}`}
+          onClick={(e) => { e.stopPropagation(); setMenuOpen((v) => !v); }}
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
 
       {/* Mobile drawer */}
-      <div className={`nav-drawer${menuOpen ? " nav-drawer--open" : ""}`}>
+      <div className={`nav-drawer${menuOpen ? " nav-drawer--open" : ""}`} aria-hidden={!menuOpen}>
         {NAV_LINKS.map((item) => (
           <a
             key={item.label}

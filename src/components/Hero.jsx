@@ -1,3 +1,5 @@
+// Hero.jsx — Introduction section (Page 2 of design)
+// Light beige background, flowing wave SVG, left copy + right sidebar
 import { useEffect, useRef } from "react";
 
 const CHARS = "!@#$%&*?ABCDEFGHIJabcdefghij0123456789";
@@ -38,7 +40,6 @@ export default function Hero() {
     if (!el) return;
     el.textContent = FINAL_WORD;
     el.style.display = "inline-block";
-    el.style.fontVariantNumeric = "tabular-nums";
     el.style.minWidth = `${FINAL_WORD.length}ch`;
 
     let animating = false;
@@ -60,7 +61,7 @@ export default function Hero() {
     const el = cycleRef.current;
     if (!el) return;
     el.style.display = "inline-block";
-    el.style.minWidth = "8ch";
+    el.style.minWidth = "10ch";
     const interval = setInterval(async () => {
       indexRef.current = (indexRef.current + 1) % CYCLE_WORDS.length;
       await scrambleWord(el, CYCLE_WORDS[indexRef.current], 1100);
@@ -69,155 +70,118 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="home" className="hero-section">
-      {/* ── BACKGROUND GRID ── */}
-      <div className="hero-bg" aria-hidden="true">
-        <div className="hero-grid" />
-        <div className="hero-vignette" />
+    <section id="intro" className="hero-section">
+      {/* Animated wave lines background */}
+      <div className="hero-wave-bg" aria-hidden="true">
+        <svg
+          className="hero-wave-svg"
+          viewBox="0 0 1440 900"
+          preserveAspectRatio="xMidYMid slice"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Radiating curved lines mimicking the design's wave pattern */}
+          {Array.from({ length: 22 }, (_, i) => {
+            const offset = i * 28;
+            return (
+              <path
+                key={i}
+                d={`M ${-200 + offset * 2} 900 Q ${400 + offset} ${200 + i * 10} ${1200 + offset} ${-100 + i * 5}`}
+                stroke="#c8c4be"
+                strokeWidth="0.7"
+                fill="none"
+                opacity={0.35 + (i % 4) * 0.08}
+              />
+            );
+          })}
+          {/* Secondary wave set from right */}
+          {Array.from({ length: 14 }, (_, i) => {
+            const offset = i * 30;
+            return (
+              <path
+                key={`r-${i}`}
+                d={`M ${1600 - offset} 0 Q ${900 - offset * 0.5} ${450 + i * 12} ${200 - offset * 0.3} ${900 + offset * 0.2}`}
+                stroke="#b8b4ae"
+                strokeWidth="0.6"
+                fill="none"
+                opacity={0.25 + (i % 3) * 0.07}
+              />
+            );
+          })}
+        </svg>
       </div>
 
-      {/* ── VERTICAL RULES ── */}
-      <div className="hero-rule-left" aria-hidden="true" />
-      <div className="hero-rule-right" aria-hidden="true" />
-
-      {/* ── SPLIT LAYOUT ── */}
-      <div className="hero-split">
-
-        {/* LEFT: TEXT PANEL */}
+      <div className="hero-inner">
+        {/* Left column */}
         <div className="hero-left">
-          <div className="hero-wrap-inner">
+          {/* Section tag */}
+          <p className="section-tag-label">001 -- Introduction</p>
 
-            {/* Intro tag */}
-            <div className="hero-tag">
-              <span className="hero-tag-line" />
-              <span className="hero-tag-text">001 / Introduction</span>
-            </div>
+          {/* Headlines */}
+          <h1 className="hero-h1">
+            Technical enough to build.<br />
+            Clear enough to{" "}
+            <span ref={leadRef} className="hero-italic-accent hero-scramble">
+              {FINAL_WORD}
+            </span>
+          </h1>
 
-            {/* Main headlines */}
-            <div className="hero-headlines">
-              <h1 className="hero-h1">
-                Technical enough<br />to build it.
-              </h1>
-              <h1 className="hero-h1 hero-h1--accent">
-                Clear enough to{" "}
-                <span
-                  ref={leadRef}
-                  className="hero-accent hero-scramble"
-                />
-              </h1>
-            </div>
+          {/* Subhead */}
+          <p className="hero-subhead">
+            I turn complexity into{" "}
+            <span ref={cycleRef} className="hero-cycle">
+              decisions.
+            </span>
+          </p>
 
-            {/* Cycling subhead */}
-            <p className="hero-subhead">
-              I turn complexity into{" "}
-              <span ref={cycleRef} className="hero-cycle">
-                decisions.
-              </span>
-            </p>
+          {/* CTA buttons */}
+          <div className="hero-btns">
+            <a href="#featured-projects" className="btn-dark">
+              VIEW MY WORK
+            </a>
+            <a href="#contact" className="btn-light">
+              LET'S TALK
+            </a>
+          </div>
+        </div>
 
-            <p className="hero-body">
-              I close the gap between raw data and real decisions — through models,
-              dashboards, and the people using them.
-            </p>
-
-            {/* CTA */}
-            <div className="hero-btns">
-              <a href="#featured-projects" className="hero-btn hero-btn--primary">
-                <span className="hero-btn-fill" aria-hidden="true" />
-                <span className="hero-btn-label">View My Work</span>
-              </a>
-              <a href="#contact" className="hero-btn hero-btn--secondary">
-                <span className="hero-btn-fill" aria-hidden="true" />
-                <span className="hero-btn-label hero-btn-label--accent">Let's Talk</span>
-              </a>
-            </div>
-
-            {/* Meta strip (visible mobile + desktop left panel) */}
-            <div className="hero-meta-strip">
-              <div className="hero-meta-divider" />
-              {[
-                { label: "Discipline", value: "BI · Data Science" },
-                { label: "Currently", value: "BSDS · Mapua University" },
-                { label: "Based In", value: "Manila, Philippines" },
-                { label: "Status", value: "Open to work", dot: true },
-              ].map(({ label, value, dot }, i, arr) => (
-                <div
-                  key={label}
-                  className={`hero-meta-row${i < arr.length - 1 ? " hero-meta-row--border" : ""}`}
-                >
-                  <span className="hero-meta-label">{label}</span>
-                  <span className="hero-meta-value">
-                    {dot && <span className="hero-status-dot" />}
-                    {value}
-                  </span>
-                </div>
+        {/* Right sidebar */}
+        <aside className="hero-sidebar">
+          {[
+            {
+              label: "DISCIPLINE",
+              lines: ["Business Intelligence, Data Science, Internet of Things (IoT)"],
+            },
+            {
+              label: "CURRENTLY",
+              lines: ["BSDS - Mapua University"],
+            },
+            {
+              label: "BASED IN",
+              lines: ["Manila, Philippines"],
+            },
+            {
+              label: "STATUS",
+              lines: ["Open to Work"],
+              dot: true,
+              dotColor: "green",
+            },
+          ].map(({ label, lines, dot, dotColor }) => (
+            <div key={label} className="hero-sidebar-item">
+              <p className="hero-sidebar-label">{label}</p>
+              {lines.map((v, i) => (
+                <p key={i} className="hero-sidebar-value">
+                  {dot && i === 0 && (
+                    <span
+                      className="hero-status-dot"
+                      style={{ background: dotColor === "green" ? "#5a7a52" : "var(--gold)" }}
+                    />
+                  )}
+                  {v}
+                </p>
               ))}
             </div>
-          </div>
-        </div>
-
-        {/* RIGHT: IMAGE PANEL */}
-        <div className="hero-right" aria-hidden="true">
-          {/*
-            ── HERO IMAGE SETUP ──────────────────────────────────────────
-            Replace the placeholder below with your actual image.
-
-            OPTION 1 — Local asset (recommended):
-              1. Add your photo to /src/assets/hero-photo.jpg (or .webp)
-              2. Import it: import heroBg from "../assets/hero-photo.jpg";
-              3. Set: style={{ backgroundImage: `url(${heroBg})` }}
-
-            OPTION 2 — Public folder:
-              Place photo at /public/hero-photo.jpg
-              Set: style={{ backgroundImage: 'url(/hero-photo.jpg)' }}
-
-            ADVANCED IMAGE SETTINGS (adjust in CSS class .hero-photo):
-              background-size: cover        → fill the panel (default)
-              background-position: center top → align to top of photo
-              opacity: 0.85                 → overall transparency (0–1)
-              filter: grayscale(0.2) contrast(1.05) brightness(0.95)
-                → subtle tone grading; increase grayscale(1) for full B&W
-              mix-blend-mode: normal        → try 'luminosity' for tinted BW
-            ────────────────────────────────────────────────────────────
-          */}
-          <div
-            className="hero-photo"
-            style={{
-              backgroundImage: "none",        /* ← REPLACE with url(heroBg) */
-            }}
-          >
-            {/* Placeholder overlay — remove once you add the real image */}
-            <div className="hero-photo-placeholder">
-              <div className="hero-photo-placeholder-inner">
-                <span className="hero-photo-placeholder-label">
-                  HERO<br />PHOTO
-                </span>
-                <span className="hero-photo-placeholder-hint">
-                  Replace hero-photo.jpg in /src/assets/
-                </span>
-              </div>
-            </div>
-
-            {/* Gradient overlay — keeps text readable; tune opacity in CSS */}
-            <div className="hero-photo-overlay" />
-
-            {/* Corner accents */}
-            <div className="hero-photo-corner hero-photo-corner--tl" />
-            <div className="hero-photo-corner hero-photo-corner--br" />
-          </div>
-
-          {/* Floating name card */}
-          <div className="hero-namecard">
-            <span className="hero-namecard-name">Shania Keith Dela Vega</span>
-            <span className="hero-namecard-role">Data Scientist · BI Analyst · BA</span>
-          </div>
-        </div>
-      </div>
-
-      {/* ── SCROLL INDICATOR ── */}
-      <div className="hero-scroll" aria-hidden="true">
-        <span className="hero-scroll-text">Scroll</span>
-        <div className="hero-scroll-line" />
+          ))}
+        </aside>
       </div>
     </section>
   );
