@@ -1388,6 +1388,9 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   padding: clamp(12px, 3vw, 40px);
   animation: demo-fade-in 220ms ease both;
+  /* Prevent touch tap-through and reduce mobile tap highlighting */
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
 }
 @keyframes demo-fade-in {
   from { opacity: 0; }

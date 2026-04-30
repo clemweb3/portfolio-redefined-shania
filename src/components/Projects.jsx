@@ -104,7 +104,7 @@ function DemoModal({ project, onClose }) {
   return (
     <div
       className="demo-overlay"
-      onClick={onClose}
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
       role="dialog"
       aria-modal="true"
       aria-label={`${project.title} demo`}
