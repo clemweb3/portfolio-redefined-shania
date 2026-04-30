@@ -188,6 +188,42 @@ function DemoModal({ project, onClose }) {
 export default function Projects() {
   const [activeDemo, setActiveDemo] = useState(null);
 
+  // Helper to close demo and briefly suppress subsequent clicks to avoid
+  // tap-through on mobile (prevents the same touch from activating
+  // underlying controls like the navbar/hamburger).
+  const closeDemo = () => {
+    try {
+      window.__suppressNextClick = true;
+      setTimeout(() => { window.__suppressNextClick = false; }, 250);
+    } catch (_) {}
+    setActiveDemo(null);
+  };
+
+  // Auto-close demo when the user navigates via the navbar (hash change
+  // or nav link click). This prevents the demo overlay from remaining
+  // visible and overlapping the destination page after navigation.
+  useEffect(() => {
+    if (!activeDemo) return;
+
+    const onDocClick = (e) => {
+      // don't close when clicking inside the modal itself
+      if (e.target.closest && e.target.closest('.demo-modal')) return;
+      if (e.target.closest && (e.target.closest('.nav-drawer-link') || e.target.closest('.nav-link'))) {
+        closeDemo();
+      }
+    };
+
+    const onHashChange = () => closeDemo();
+
+    document.addEventListener('click', onDocClick);
+    window.addEventListener('hashchange', onHashChange);
+
+    return () => {
+      document.removeEventListener('click', onDocClick);
+      window.removeEventListener('hashchange', onHashChange);
+    };
+  }, [activeDemo]);
+
   return (
     <section id="featured-projects" className="proj-section">
       {/* ── Bezier animated canvas background ── */}

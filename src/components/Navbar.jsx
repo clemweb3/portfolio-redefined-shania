@@ -23,6 +23,9 @@ export default function Navbar() {
   useEffect(() => {
     if (!menuOpen) return;
     const close = (e) => {
+      // Ignore clicks that are suppressed by other UI (e.g. after modal
+      // closes we set a brief suppress flag to avoid tap-through on mobile)
+      if (typeof window !== 'undefined' && window.__suppressNextClick) return;
       if (!e.target.closest(".nav-drawer") && !e.target.closest(".nav-hamburger")) {
         setMenuOpen(false);
       }
