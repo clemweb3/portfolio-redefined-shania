@@ -87,7 +87,7 @@ export default function Hero() {
                 key={i}
                 d={`M ${-200 + offset * 2} 900 Q ${400 + offset} ${200 + i * 10} ${1200 + offset} ${-100 + i * 5}`}
                 stroke="#c8c4be"
-                strokeWidth="0.7"
+                strokeWidth="0.8"
                 fill="none"
                 opacity={0.35 + (i % 4) * 0.08}
               />
@@ -103,7 +103,7 @@ export default function Hero() {
                 stroke="#b8b4ae"
                 strokeWidth="0.6"
                 fill="none"
-                opacity={0.25 + (i % 3) * 0.07}
+                opacity={0.30 + (i % 3) * 0.07}
               />
             );
           })}
@@ -149,7 +149,7 @@ export default function Hero() {
           {[
             {
               label: "DISCIPLINE",
-              lines: ["Business Intelligence, Data Science, Internet of Things (IoT)"],
+              lines: ["Business Intelligence, Software Engineering, Data Science, Internet of Things (IoT)"],
             },
             {
               label: "CURRENTLY",

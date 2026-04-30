@@ -24,7 +24,7 @@ export default function Contact() {
                 key={i}
                 d={`M ${-150 + offset * 2} 600 Q ${350 + offset} ${150 + i * 12} ${1100 + offset} ${-80 + i * 6}`}
                 stroke="#c8c4be"
-                strokeWidth="0.6"
+                strokeWidth="0.5"
                 fill="none"
                 opacity={0.3 + (i % 3) * 0.06}
               />
@@ -75,7 +75,7 @@ export default function Contact() {
         {/* Footer */}
         <div className="contact-footer">
           <p className="contact-footer-copy">
-            © 2025 Shania Keith Dela Vega. All Rights Reserved.
+            © 2026 Shania Keith Dela Vega. All Rights Reserved.
           </p>
           <p className="contact-footer-tagline">
             Obsessed with process. Driven by results.

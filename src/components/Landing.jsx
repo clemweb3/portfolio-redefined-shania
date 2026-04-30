@@ -7,16 +7,14 @@ import hero from '../assets/assets/hero-eclipse.jpg'
 export default function Landing() {
   return (
     <section id="home" className="landing">
-      {/* Hero image — replace src with your actual eclipse image */}
       <div className="landing-img-wrap">
         <img src={hero} alt="Hero Eclipse" className="landing-img" />
-        {/* Overlay for color tinting / transparency control */}
         <div className="landing-overlay" aria-hidden="true" />
       </div>
 
       {/* ENIXIA wordmark */}
       <div className="landing-wordmark" aria-label="ENIXIA">
-        <span className="landing-title">E N I X I A</span>
+        <span className="landing-title">ENIXIA</span>
         <p className="landing-tagline">Build. Adapt. Articulate.</p>
       </div>
     </section>
