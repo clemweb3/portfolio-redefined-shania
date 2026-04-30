@@ -614,7 +614,6 @@ img { max-width: 100%; display: block; }
   margin-bottom: 4px;
   width: 100%;
 }
-.exp-stat-block {}
 .exp-stat-number {
   font-family: var(--font-display);
   font-size: clamp(36px, 5vw, 52px);
@@ -721,7 +720,6 @@ img { max-width: 100%; display: block; }
   box-shadow: 0 12px 40px rgba(0,0,0,0.25);
 }
 
-.proj-card-header {}
 .proj-card-dot-title {
   display: flex;
   align-items: flex-start;
@@ -1605,5 +1603,37 @@ img { max-width: 100%; display: block; }
   }
   .demo-modal-header {
     padding: 12px 16px;
+  }
+}
+/* ─────────────────────────────────────────────────────────────────────────────
+   BEZIER BACKGROUND SYSTEM
+   Append these rules to the bottom of index.css (after the demo modal rules).
+   Zero changes to any existing selectors above.
+───────────────────────────────────────────────────────────────────────────── */
+
+/* Ensure .proj-section has relative positioning so the canvas anchors to it */
+/* (your existing .proj-section already has position: relative via overflow:hidden,
+   but we make it explicit for the canvas) */
+.proj-section {
+  isolation: isolate;        /* new stacking context — canvas stays behind content */
+}
+
+/* The canvas itself is positioned absolute via inline style in the component.
+   This class adds a smooth fade-in so it doesn't pop on mount. */
+.bezier-bg-canvas {
+  opacity: 0;
+  animation: bezier-reveal 1.2s ease 0.3s forwards;
+  will-change: opacity;
+}
+
+@keyframes bezier-reveal {
+  to { opacity: 1; }
+}
+
+/* On reduced-motion preference, skip the fade and just show at full opacity */
+@media (prefers-reduced-motion: reduce) {
+  .bezier-bg-canvas {
+    animation: none;
+    opacity: 1;
   }
 }

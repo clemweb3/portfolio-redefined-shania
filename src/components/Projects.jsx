@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
+import BezierBackground from "./BezierBackground";
 
 // ─── PROJECT DATA ────────────────────────────────────────────────────────────
 const PROJECTS = [
@@ -12,7 +13,7 @@ const PROJECTS = [
     image: "/src/assets/assets/proj-cps.jpg",
     github: "https://github.com/clemweb3/limiting-factor-iot-forecast",
     demo: "https://clemweb3.github.io/limiting-factor-iot-forecast/",
-    demoType: "web", // "web" | "tableau"
+    demoType: "web",
     status: "PUBLISHED",
   },
   {
@@ -57,7 +58,6 @@ const PROJECTS = [
 ];
 
 // ─── TABLEAU EMBED URL CONVERTER ─────────────────────────────────────────────
-// Converts a Tableau Public share URL into an embeddable iframe URL
 function toTableauEmbedUrl(url) {
   try {
     const match = url.match(/\/viz\/([^/]+)\/([^?]+)/);
@@ -106,8 +106,6 @@ function DemoModal({ project, onClose }) {
       aria-label={`${project.title} demo`}
     >
       <div className="demo-modal" onClick={(e) => e.stopPropagation()}>
-
-        {/* Modal header */}
         <div className="demo-modal-header">
           <div className="demo-modal-header-left">
             <span className="demo-modal-dot" />
@@ -138,9 +136,7 @@ function DemoModal({ project, onClose }) {
           </div>
         </div>
 
-        {/* iframe area */}
         <div className="demo-iframe-wrap">
-          {/* Loading spinner */}
           {!loaded && (
             <div className="demo-loading">
               <div className="demo-spinner" />
@@ -150,7 +146,6 @@ function DemoModal({ project, onClose }) {
             </div>
           )}
 
-          {/* Blocked / embed-denied fallback */}
           {blocked ? (
             <div className="demo-blocked">
               <p className="demo-blocked-title">Embed restricted by host</p>
@@ -191,7 +186,10 @@ export default function Projects() {
 
   return (
     <section id="featured-projects" className="proj-section">
-      {/* Diagonal line background */}
+      {/* ── Bezier animated canvas background ── */}
+      <BezierBackground />
+
+      {/* Diagonal line background (existing — kept intact) */}
       <div className="proj-lines-bg" aria-hidden="true">
         <svg
           className="proj-lines-svg"
@@ -244,7 +242,6 @@ export default function Projects() {
               </div>
 
               <div className="proj-card-body">
-                {/* Screenshot with interactive demo overlay */}
                 <div className="proj-screenshot-wrap">
                   <img
                     src={project.image}
@@ -259,7 +256,6 @@ export default function Projects() {
                     <span>[ Screenshot coming soon ]</span>
                   </div>
 
-                  {/* Hover overlay — click to open modal */}
                   {project.demo && (
                     <button
                       className="proj-preview-overlay"
@@ -272,7 +268,6 @@ export default function Projects() {
                   )}
                 </div>
 
-                {/* Description */}
                 <div className="proj-card-desc-col">
                   <p className="proj-card-desc">{project.description}</p>
                   <div className="proj-card-tags">
@@ -286,7 +281,6 @@ export default function Projects() {
                 </div>
               </div>
 
-              {/* Footer */}
               <div className="proj-card-footer">
                 <span
                   className={`proj-status-badge proj-status-badge--${
@@ -319,7 +313,6 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Demo modal — mounted conditionally */}
       {activeDemo && (
         <DemoModal project={activeDemo} onClose={() => setActiveDemo(null)} />
       )}
