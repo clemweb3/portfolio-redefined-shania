@@ -8,7 +8,7 @@ export default function Landing() {
   return (
     <section id="home" className="landing">
       <div className="landing-img-wrap">
-        <img src={hero} alt="Hero Eclipse" className="landing-img" />
+        <img src={hero} alt="Hero Eclipse" className="landing-img" fetchPriority="high" decoding="async" />
         <div className="landing-overlay" aria-hidden="true" />
       </div>
 

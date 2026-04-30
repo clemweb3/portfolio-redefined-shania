@@ -1,5 +1,9 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import BezierBackground from "./BezierBackground";
+import projCps from "../assets/assets/proj-cps.jpg";
+import projOnboarding from "../assets/assets/proj-onboarding.jpg";
+import projThesis from "../assets/assets/proj-thesis.jpg";
+import projBi from "../assets/assets/proj-bi.jpg";
 
 // ─── PROJECT DATA ────────────────────────────────────────────────────────────
 const PROJECTS = [
@@ -10,7 +14,7 @@ const PROJECTS = [
     tags: ["IoT", "Cyber-Physical Systems (CPS)", "Time-Series Forecasting", "SARIMA"],
     description:
       "A minimalist Cyber-Physical System (CPS) that transforms reactive thermostats into proactive forecasting nodes. Using a hybrid SARIMA-Heuristic model, the system predicts residential thermal trends with sub-resolution accuracy (MAE < 0.1°C), bridging the gap between statistical stability and real-time thermal shock response. Enhanced user trust by implementing an XAI layer that translates high-dimensional AI predictions into natural language insights.",
-    image: "/src/assets/assets/proj-cps.jpg",
+    image: projCps,
     github: "https://github.com/clemweb3/limiting-factor-iot-forecast",
     demo: "https://clemweb3.github.io/limiting-factor-iot-forecast/",
     demoType: "web",
@@ -23,7 +27,7 @@ const PROJECTS = [
     tags: ["Synthetic Data Modeling", "Business Analysis"],
     description:
       "Early-stage B2B AI startups stall during client onboarding due to undefined ownership, sparse documentation, and late scope governance — not technical failure. This case study quantifies those failure patterns through a generative simulation, producing a segmentation analysis, inferential audit, and interactive sensitivity tool that projects how targeted interventions reduce executive overhead and improve activation speed.",
-    image: "/src/assets/assets/proj-onboarding.jpg",
+    image: projOnboarding,
     github: "https://github.com/clemweb3/client-onboarding-failure-analysis",
     demo: "https://clemweb3.github.io/client-onboarding-failure-analysis/",
     demoType: "web",
@@ -36,7 +40,7 @@ const PROJECTS = [
     tags: ["Big Data", "Financial Vulnerability Index", "Labor Force Survey"],
     description:
       "This project contains the complete analytical pipeline for constructing the Regional Financial Vulnerability Index (RFVI) from Philippine Statistics Authority (PSA) Labor Force Survey (LFS) microdata spanning 2018–2024 (40 survey months, ~6 million household-level observations).",
-    image: "/src/assets/assets/proj-thesis.jpg",
+    image: projThesis,
     github: "https://github.com/clemweb3/Undergraduate-Thesis-Repository",
     demo: "https://public.tableau.com/app/profile/juan.paolo.aguilar8664/viz/FinancialVulnerabilityinthePhilippines/Dashboard1",
     demoType: "tableau",
@@ -49,7 +53,7 @@ const PROJECTS = [
     tags: ["Power BI", "Tableau", "SQL", "Synthetic Data Modeling", "Business Analysis"],
     description:
       "Operational and strategic dashboards built for data-driven decision making. Bridging the gap between raw data and business clarity — featuring E-Commerce Sales & Returns Insights and other domain-specific dashboards.",
-    image: "/src/assets/assets/proj-bi.jpg",
+    image: projBi,
     github: "https://github.com/clemweb3/E-commerce-Data-Insights-Dashboard",
     demo: "https://public.tableau.com/app/profile/shania.keith.dela.vega/viz/ECOMMERCE_PROJ/dashboard2",
     demoType: "tableau",
@@ -247,6 +251,8 @@ export default function Projects() {
                     src={project.image}
                     alt={`${project.title} screenshot`}
                     className="proj-screenshot"
+                    loading="lazy"
+                    decoding="async"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                       e.currentTarget.nextElementSibling.style.display = "flex";
